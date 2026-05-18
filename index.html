@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word Garden Games</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="theme-sunny">
+    <div class="scene" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="planet"></div>
+      <div class="cloud cloud-one"></div>
+      <div class="cloud cloud-two"></div>
+      <div class="hill hill-one"></div>
+      <div class="hill hill-two"></div>
+      <div class="star star-one"></div>
+      <div class="star star-two"></div>
+      <div class="star star-three"></div>
+      <div class="heart heart-one"></div>
+      <div class="heart heart-two"></div>
+    </div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <button class="brand-button" id="homeButton" type="button" aria-label="Open game chooser">
+          <span class="brand-mark">WG</span>
+          <span>
+            <strong>Word Garden</strong>
+            <small id="activeGameLabel">Choose a game</small>
+          </span>
+        </button>
+
+        <section class="quick-dock" aria-label="Game controls">
+          <button class="dock-button" id="profileCard" type="button" aria-label="Open profile">
+            <span class="tiny-icon profile-icon"></span>
+            <span id="profileName">Player</span>
+          </button>
+
+          <button class="dock-button" id="gameChooserCard" type="button" aria-label="Open game chooser">
+            <span class="tiny-icon game-icon"></span>
+            <span>Games</span>
+          </button>
+
+          <button class="dock-button" id="wordListCard" type="button" aria-label="Open word list">
+            <span class="tiny-icon words-icon"></span>
+            <span id="wordCountLabel">10 words</span>
+          </button>
+
+          <details class="dock-item theme-dock">
+            <summary>
+              <span class="tiny-icon theme-icon"></span>
+              <span>Theme</span>
+            </summary>
+            <div class="dock-panel theme-chooser" aria-label="Theme chooser">
+              <button class="theme-chip active" type="button" data-theme="sunny">Sunny</button>
+              <button class="theme-chip" type="button" data-theme="space">Space</button>
+              <button class="theme-chip" type="button" data-theme="cute">Cute</button>
+            </div>
+          </details>
+        </section>
+      </header>
+
+      <section class="game-panel" aria-live="polite">
+        <div class="score-strip">
+          <span id="gameTitle">Choose a game</span>
+          <strong id="scoreCounter">Score: 0</strong>
+        </div>
+
+        <div class="game-stage" id="gameStage">
+          <div class="empty-state">
+            <h1>Pick a game</h1>
+            <p>Start with Mix-up or Blanked out.</p>
+            <button class="primary-button" id="startChoosingButton" type="button">Choose game</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="overlay visible" id="profileOverlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+      <div class="modal">
+        <button class="close-button optional-close" type="button" data-close aria-label="Close">x</button>
+        <h2 id="profileTitle">Player Profile</h2>
+        <label class="field-label" for="profileInput">Name</label>
+        <input id="profileInput" class="text-input" type="text" maxlength="24" autocomplete="name" placeholder="PLAYER">
+        <div class="modal-score-grid">
+          <div><span>Mix-up</span><strong id="profileMixScore">0</strong></div>
+          <div><span>Blanked out</span><strong id="profileBlankedScore">0</strong></div>
+        </div>
+        <button class="primary-button" id="saveProfileButton" type="button">Play</button>
+      </div>
+    </div>
+
+    <div class="overlay" id="gameOverlay" role="dialog" aria-modal="true" aria-labelledby="gameChooserTitle">
+      <div class="modal">
+        <button class="close-button" type="button" data-close aria-label="Close">x</button>
+        <h2 id="gameChooserTitle">Choose a Game</h2>
+        <div class="choice-grid">
+          <button class="choice-card" type="button" data-game="mixup">
+            <span class="choice-art mix-art"></span>
+            <strong>Mix-up</strong>
+            <small>Unscramble the word.</small>
+          </button>
+          <button class="choice-card" type="button" data-game="blanked">
+            <span class="choice-art blank-art"></span>
+            <strong>Blanked out</strong>
+            <small>Find the missing letters.</small>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="wordOverlay" role="dialog" aria-modal="true" aria-labelledby="wordListTitle">
+      <div class="modal">
+        <button class="close-button" type="button" data-close aria-label="Close">x</button>
+        <h2 id="wordListTitle">Word List</h2>
+        <label class="upload-box" for="wordFile">
+          <input id="wordFile" type="file" accept=".txt,text/plain">
+          <span class="upload-icon"></span>
+          <strong>Upload .txt</strong>
+          <small>One word per line.</small>
+        </label>
+        <div class="word-preview" id="wordPreview"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
